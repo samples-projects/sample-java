@@ -1,28 +1,77 @@
 package sample.junit;
 
+import lombok.extern.slf4j.Slf4j;
+
+/**
+ * 計算機
+ */
+@Slf4j
 public class Calculator {
-	private int times(int x, int y) {
-		return x * y;
+	/**
+	 * 掛け算
+	 * 
+	 * @param x 第1オペラント
+	 * @param y 第2オペラント
+	 * @return x x y
+	 */
+	private int times(final int x, final int y) {
+		int result = x * y;
+		log.info("times: {} x {} = {}", x, y, result);
+		return result;
 	}
 
-	public int multiply(int x, int y) {
-		return times(x, y);
+	/**
+	 * 掛け算
+	 * 
+	 * @param x 第1オペラント
+	 * @param y 第2オペラント
+	 * @return x x y
+	 */
+	public int multiply(final int x, final int y) {
+		int result = times(x, y);
+		log.info("multiply: {} x {} = {}", x, y, result);
+		return result;
 	}
 
-	public float divide(int x, int y) {
-		if (y == 0)
+	/**
+	 * 割り算
+	 * 
+	 * @param x 第1オペラント
+	 * @param y 第2オペラント
+	 * @return x / y
+	 * @throws IllegalArgumentException ゼロ割
+	 */
+	public float divide(final int x, final int y) throws IllegalArgumentException {
+		if (y == 0) {
+			log.error("Can't calculate y = {}", y);
 			throw new IllegalArgumentException();
-		return (float) x / (float) y;
+		}
+
+		float result = (float) x / (float) y;
+		log.info("divide: {} / {} = {}", x, y, result);
+		return result;
 	}
 
-	public int square(int x) {
-		System.out.println(x + "^2");
-		return times(x, x);
+	/**
+	 * 2乗
+	 * 
+	 * @param x オペラント
+	 * @return x ^ 2
+	 */
+	public int square(final int x) {
+		int result = times(x, x);
+		log.info("square: {} ^2 = {}", x, result);
+		return result;
 	}
 
+	/**
+	 * 環境変数取得
+	 * 
+	 * @return 環境変数
+	 */
 	public String getEnv() {
 		String env = System.getenv("AWESOME_ENV_VAL");
-		System.out.println("AWESOME_ENV_VAL=" + env);
+		log.info("AWESOME_ENV_VAL = {}", env);
 		return env;
 	}
 }

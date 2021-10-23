@@ -41,7 +41,8 @@ public class Calculator_multiplyTest {
 		public static Fixture[] createFixture() {
 			Fixture[] DATAS = {
 					new Fixture(3, 4, 12),
-					new Fixture(5, 7, 35)};
+					new Fixture(5, 7, 35)
+			};
 			return DATAS;
 		}
 

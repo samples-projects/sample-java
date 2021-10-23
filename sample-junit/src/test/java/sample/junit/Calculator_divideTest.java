@@ -1,7 +1,7 @@
 package sample.junit;
 
 import static org.junit.Assert.*;
-
+import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
@@ -43,7 +43,8 @@ public class Calculator_divideTest {
 					new Fixture(0, 2, 0),
 					new Fixture(2, 4, 0.5F),
 					new Fixture(4, 2, 2)
-					};
+			};
+
 			return DATAS;
 		}
 
@@ -69,23 +70,18 @@ public class Calculator_divideTest {
 		/** 入力値・規格値の読込 */
 		@DataPoints
 		public static Fixture[] createFixture() {
-			Fixture[] DATAS = {
+			Fixture[] data = {
 					new Fixture(2, 0, 0)
-					};
-			return DATAS;
+			};
+			return data;
 		}
 
 		/** 試験実行 */
 		@Theory
+		@Test(expected = IllegalArgumentException.class)
 		public void test(Fixture fx) {
-			try {
-				// 実行
-				calculator.divide(fx.x, fx.y);
-				// 検証
-				fail();
-			} catch (IllegalArgumentException e) {
-			} finally {
-			}
+			// 実行
+			calculator.divide(fx.x, fx.y);
 		}
 	}
 }
